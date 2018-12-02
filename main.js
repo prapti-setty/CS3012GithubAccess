@@ -1,8 +1,6 @@
 $(document).ready(function(){
   $('#searchUser').on('keyup', function(e){
     let username = e.target.value;
-
-    // Make request to Github
     $.ajax({
         url:'https://api.github.com/users/'+username,
         data:{
@@ -28,12 +26,14 @@ $(document).ready(function(){
                   <span class="badge badge-dark">Forks: ${repo.forks_count}</span>
                   <span class="badge badge-primary">Watchers: ${repo.watchers_count}</span>
                   <span class="badge badge-success">Stars: ${repo.stargazers_count}</span>
+                  <span class="badge badge-success">Languages: ${repo.languages}</span>
                 </div>
               </div>
             </div>
           `);
         });
       });
+
       $('#profile').html(`
         <div class="card border-primary mb-3" style="max-width: 100rem;">
           <div class="card-header"><h3>${user.name}</h3></div>
