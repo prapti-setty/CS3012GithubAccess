@@ -16,6 +16,23 @@ $(document).ready(function(){
           client_id:'50afc71dc9d3ce3ba279',
           client_secret:'fa3f99f1582b1e920dd0fe233ad592b83d8f7489'
         }
+      }).done(function(repos){
+        $.each(repos, function(index, repo){
+          $('#repos').append(`
+            <div class="card">
+              <div class="row">
+                <div class="col-md-7">
+                  <strong>${repo.name}</strong>
+                </div>
+                <div class="col-md-3">
+                  <span class="badge badge-dark">Forks: ${repo.forks_count}</span>
+                  <span class="badge badge-primary">Watchers: ${repo.watchers_count}</span>
+                  <span class="badge badge-success">Stars: ${repo.stargazers_count}</span>
+                </div>
+              </div>
+            </div>
+          `);
+        });
       });
       $('#profile').html(`
         <div class="card border-primary mb-3" style="max-width: 100rem;">
@@ -38,6 +55,7 @@ $(document).ready(function(){
             </div>
           </div>
         </div>
+        <div id="repos"></div>
         `);
     });
   });
